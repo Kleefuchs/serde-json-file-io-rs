@@ -6,7 +6,7 @@ use std::{
 
 /*
  * Writes Instance of PathManager to json file already handles all serialization*/
-pub fn write_to_file<T: serde::Serialize>(object: T, path: &std::path::Path) -> Result<i32, String> {
+pub fn write_to_file<T: serde::Serialize>(object: &T, path: &std::path::Path) -> Result<i32, String> {
     /*
      * God forgive me for my sins of being too much of a nester*/
     match path.parent() {
