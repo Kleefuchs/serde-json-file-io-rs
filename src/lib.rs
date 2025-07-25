@@ -15,7 +15,7 @@ pub fn write_to_file<T: serde::Serialize>(object: &T, path: &std::path::Path) ->
                     Ok(_) => {
                         match std::fs::File::create(path) {
                             Ok(mut f) => {
-                                match serde_json::to_string(&object) {
+                                match serde_json::to_string(object) {
                                     Ok(data_string) => {
                                         match f.write_all(data_string.as_bytes()) {
                                             Ok(_) => Ok(0),
@@ -46,7 +46,7 @@ pub fn read_from_file<'a, T: serde::Deserialize<'a>>(path: &std::path::Path, str
             Ok(mut f) => {
                 match f.read_to_string(strbuf) {
                     Ok(_) => match serde_json::from_str(strbuf) {
-                        Ok(pm) => pm,
+                        Ok(t) => t,
                         Err(e) => Err("Error deserializing json: ".to_owned() + &e.to_string()),
                     }, // Match 3 End
                     Err(e) => Err("Error reading string from file: ".to_owned() + &e.to_string()),
