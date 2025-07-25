@@ -6,7 +6,7 @@ use std::{
 
 /*
  * Writes Instance of PathManager to json file already handles all serialization*/
-fn write_to_file<T: serde::Serialize>(object: T, path: &std::path::Path) -> Result<i32, String> {
+pub fn write_to_file<T: serde::Serialize>(object: T, path: &std::path::Path) -> Result<i32, String> {
     /*
      * God forgive me for my sins of being too much of a nester*/
     match path.parent() {
@@ -39,7 +39,7 @@ fn write_to_file<T: serde::Serialize>(object: T, path: &std::path::Path) -> Resu
         } //Match 1 End
 }
 
-fn read_from_file<'a, T: serde::Deserialize<'a>>(path: &std::path::Path, strbuf: &'a mut String) -> Result<T, String> {
+pub fn read_from_file<'a, T: serde::Deserialize<'a>>(path: &std::path::Path, strbuf: &'a mut String) -> Result<T, String> {
         /*
          * These match statements are horrible*/
         match std::fs::File::open(path) {
