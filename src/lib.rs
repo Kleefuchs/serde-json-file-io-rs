@@ -45,8 +45,8 @@ pub fn read_from_file<'a, T: serde::Deserialize<'a>>(path: &std::path::Path, str
         match std::fs::File::open(path) {
             Ok(mut f) => {
                 match f.read_to_string(strbuf) {
-                    Ok(_) => match serde_json::from_str(strbuf) {
-                        Ok(t) => t,
+                    Ok(_) => match serde_json::from_str::<T>(strbuf) {
+                        Ok(t) => Ok(t),
                         Err(e) => Err("Error deserializing json: ".to_owned() + &e.to_string()),
                     }, // Match 3 End
                     Err(e) => Err("Error reading string from file: ".to_owned() + &e.to_string()),
