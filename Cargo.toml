@@ -7,6 +7,7 @@ keywords = ["serde_json", "json", "files", "fileio", "serialization"]
 categories = ["filesystem"]
 description = "A package for writing and reading from/to JSON, Data Structures which implement serde's Serialize and or Deserialize"
 readme = "README.md"
+repository = "https://github.com/Kleefuchs/serde-json-file-io-rs"
 
 
 [dependencies]
